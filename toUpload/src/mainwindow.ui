@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>MainWindow</class>
+ <widget class="QMainWindow" name="MainWindow">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>800</width>
+    <height>600</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>MainWindow</string>
+  </property>
+  <widget class="QWidget" name="centralwidget">
+   <layout class="QGridLayout" name="gridLayout_3">
+    <item row="0" column="0">
+     <layout class="QHBoxLayout" name="horizontalLayout" stretch="2,8">
+      <item>
+       <layout class="QVBoxLayout" name="verticalLayout">
+        <item>
+         <widget class="QGroupBox" name="pointCloudGroupBox">
+          <property name="title">
+           <string>点云树</string>
+          </property>
+          <layout class="QGridLayout" name="gridLayout_2">
+           <item row="0" column="0">
+            <widget class="QTreeView" name="DBtreeView"/>
+           </item>
+          </layout>
+         </widget>
+        </item>
+        <item>
+         <widget class="QGroupBox" name="propertyGroupBox">
+          <property name="title">
+           <string>参数</string>
+          </property>
+          <layout class="QGridLayout" name="gridLayout">
+           <item row="0" column="0">
+            <widget class="QTextBrowser" name="textBrowser_2"/>
+           </item>
+          </layout>
+         </widget>
+        </item>
+       </layout>
+      </item>
+      <item>
+       <widget class="QVTKOpenGLNativeWidget" name="mainWidget" native="true"/>
+      </item>
+     </layout>
+    </item>
+   </layout>
+  </widget>
+  <widget class="QMenuBar" name="menubar">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>800</width>
+     <height>21</height>
+    </rect>
+   </property>
+   <widget class="QMenu" name="fileManu">
+    <property name="title">
+     <string>文件(&amp;F)</string>
+    </property>
+    <addaction name="openAction"/>
+    <addaction name="saveAction"/>
+    <addaction name="separator"/>
+    <addaction name="quitAction"/>
+   </widget>
+   <widget class="QMenu" name="viewerManu">
+    <property name="title">
+     <string>显示(&amp;V)</string>
+    </property>
+    <addaction name="backguandColorAction"/>
+    <addaction name="pointCloudColorAction"/>
+    <addaction name="action_4"/>
+   </widget>
+   <addaction name="fileManu"/>
+   <addaction name="viewerManu"/>
+  </widget>
+  <widget class="QStatusBar" name="statusbar"/>
+  <action name="openAction">
+   <property name="text">
+    <string>打开(&amp;O)...</string>
+   </property>
+  </action>
+  <action name="saveAction">
+   <property name="text">
+    <string>保存(&amp;S)...</string>
+   </property>
+  </action>
+  <action name="quitAction">
+   <property name="text">
+    <string>退出(&amp;X)</string>
+   </property>
+  </action>
+  <action name="backguandColorAction">
+   <property name="text">
+    <string>背景颜色...</string>
+   </property>
+  </action>
+  <action name="pointCloudColorAction">
+   <property name="text">
+    <string>点云颜色...</string>
+   </property>
+  </action>
+  <action name="action_4">
+   <property name="text">
+    <string>单点尺寸</string>
+   </property>
+  </action>
+ </widget>
+ <customwidgets>
+  <customwidget>
+   <class>QVTKOpenGLNativeWidget</class>
+   <extends>QWidget</extends>
+   <header location="global">QVTKOpenGLNativeWidget.h</header>
+   <container>1</container>
+  </customwidget>
+ </customwidgets>
+ <resources/>
+ <connections/>
+</ui>
