@@ -61,7 +61,7 @@
      <height>21</height>
     </rect>
    </property>
-   <widget class="QMenu" name="fileManu">
+   <widget class="QMenu" name="fileMenu">
     <property name="title">
      <string>文件(&amp;F)</string>
     </property>
@@ -70,16 +70,49 @@
     <addaction name="separator"/>
     <addaction name="quitAction"/>
    </widget>
-   <widget class="QMenu" name="viewerManu">
+   <widget class="QMenu" name="viewerMenu">
     <property name="title">
      <string>显示(&amp;V)</string>
     </property>
     <addaction name="backguandColorAction"/>
     <addaction name="pointCloudColorAction"/>
-    <addaction name="action_4"/>
+    <addaction name="pointCloudRenderAction"/>
+    <addaction name="pointSizeAction"/>
    </widget>
-   <addaction name="fileManu"/>
-   <addaction name="viewerManu"/>
+   <widget class="QMenu" name="filterMenu">
+    <property name="title">
+     <string>滤波(&amp;F)</string>
+    </property>
+    <addaction name="filterVoxelAction"/>
+   </widget>
+   <widget class="QMenu" name="keyPointMenu">
+    <property name="title">
+     <string>关键点(&amp;P)</string>
+    </property>
+   </widget>
+   <widget class="QMenu" name="featureMenu">
+    <property name="title">
+     <string>特征(&amp;K)</string>
+    </property>
+   </widget>
+   <widget class="QMenu" name="registrationMenu">
+    <property name="title">
+     <string>配准(&amp;R)</string>
+    </property>
+    <widget class="QMenu" name="menuICP">
+     <property name="title">
+      <string>ICP</string>
+     </property>
+     <addaction name="ICP_SVDAction"/>
+    </widget>
+    <addaction name="menuICP"/>
+   </widget>
+   <addaction name="fileMenu"/>
+   <addaction name="viewerMenu"/>
+   <addaction name="filterMenu"/>
+   <addaction name="keyPointMenu"/>
+   <addaction name="featureMenu"/>
+   <addaction name="registrationMenu"/>
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
   <action name="openAction">
@@ -107,9 +140,24 @@
     <string>点云颜色...</string>
    </property>
   </action>
-  <action name="action_4">
+  <action name="pointSizeAction">
    <property name="text">
-    <string>单点尺寸</string>
+    <string>单点尺寸...</string>
+   </property>
+  </action>
+  <action name="pointCloudRenderAction">
+   <property name="text">
+    <string>点云渲染...</string>
+   </property>
+  </action>
+  <action name="filterVoxelAction">
+   <property name="text">
+    <string>体素滤波...</string>
+   </property>
+  </action>
+  <action name="ICP_SVDAction">
+   <property name="text">
+    <string>SVD</string>
    </property>
   </action>
  </widget>

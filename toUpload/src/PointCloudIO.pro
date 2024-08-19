@@ -10,17 +10,29 @@ CONFIG += c++17
 
 SOURCES += \
     colorselection.cpp \
+    dialog_icp.cpp \
+    filter_voxel.cpp \
     main.cpp \
     mainwindow.cpp \
-    pcl_fuction.cpp
+    pcl_fuction.cpp \
+    view_pointsizesetting.cpp \
+    view_rendering.cpp
 
 HEADERS += \
     colorselection.h \
+    dialog_icp.h \
+    filter_voxel.h \
     mainwindow.h \
-    pcl_fuction.h
+    pcl_fuction.h \
+    view_pointsizesetting.h \
+    view_rendering.h
 
 FORMS += \
-    mainwindow.ui
+    dialog_icp.ui \
+    filter_voxel.ui \
+    mainwindow.ui \
+    view_pointsizesetting.ui \
+    view_rendering.ui
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin

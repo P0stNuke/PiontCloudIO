@@ -7,12 +7,26 @@
 #include <pcl/point_types.h>
 #include <pcl/point_cloud.h>
 #include <pcl/visualization/pcl_visualizer.h>
+#include <pcl/filters/voxel_grid.h>
+#include <pcl/registration/icp.h>
+
+#include <QDebug>
+
+// class PCL_Fuction
+// {
+// public:
+//     PCL_Fuction();
+// private:
+// };
 
 
-class PCL_Fuction
-{
-public:
-    PCL_Fuction();
-};
+//------------------------------------------filter--------------------------------
+pcl::PointCloud<pcl::PointXYZ>::Ptr pcl_filter_voxel(pcl::PointCloud<pcl::PointXYZ>::Ptr cloud_in,
+                                                     float leaf_size);
+//------------------------------------registration--------------------------------------------
+Eigen::Matrix4f pcl_registration_icp(pcl::PointCloud<pcl::PointXYZ>::Ptr cloud_src,
+                                     pcl::PointCloud<pcl::PointXYZ>::Ptr cloud_tgt,
+                                     pcl::PointCloud<pcl::PointXYZ>::Ptr cloud_rst,
+                                     double paraA,double paraB,double paraC,int paraD);
 
 #endif // PCL_FUCTION_H
