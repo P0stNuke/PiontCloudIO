@@ -8,6 +8,7 @@
 #include "view_pointsizesetting.h"  // 单点尺寸窗口类
 #include "filter_voxel.h"   // 体素滤波窗口类
 #include "dialog_icp.h"     // ICP_SVD配准窗口类
+#include "dialog_icptv.h"   // ICP_SVD配准窗口类（使用TreeView）
 
 //-----------------------------vtk---------------------------------
 #include <QVTKOpenGLNativeWidget.h>
@@ -83,8 +84,10 @@ private:
     View_pointSizeSetting *dialog_pointSizeSetting;
     // 体素滤波窗口对象指针
     Filter_Voxel *dialog_voxel;
+    PointCloudXYZ::Ptr filter_cloud_out;
     // ICP_SVD配准窗口对象指针
     Dialog_icp *dialog_icp;
+    Dialog_icpTV *dialog_icpTV;
     PointCloudXYZ src_cloud;
     PointCloudXYZ tgt_cloud;
     PointCloudXYZ::Ptr rst_cloud;
@@ -112,17 +115,42 @@ private slots:
     void voxel_Filter(QString voxelSize);   // 进行体素滤波操作
     void on_ICP_SVDAction_triggered();      // 启动ICP_SVD配准窗口
 
-    /** \brief 进行ICP_SVD配准操作.
-          * \param[in] maxDistance 点对间最大配对距离
-          * \param[in] transEpsilon 两次变换矩阵之间的差值
-          * \param[in] fitnessEpsilon 前后两侧均方误差大小，当误差值小于这个值停止迭代
-          * \param[in] maxIterations 最大迭代次数
-          * \param[in] srcFilePath 源点云文件路径
-          * \param[in] tgtFilePath 目标点云文件路径
-          * \return void
+    /** @brief 进行ICP_SVD配准操作.
+          * @param[in] maxDistance 点对间最大配对距离
+          * @param[in] transEpsilon 两次变换矩阵之间的差值
+          * @param[in] fitnessEpsilon 前后两侧均方误差大小，当误差值小于这个值停止迭代
+          * @param[in] maxIterations 最大迭代次数
+          * @param[in] srcFilePath 源点云文件路径
+          * @param[in] tgtFilePath 目标点云文件路径
+          * @return void
           */
-    void icp_svd_Registration(QString maxDistance,QString transEpsilon,
-                               QString fitnessEpsilon,QString maxIterations,
-                               QString srcFilePath,QString tgtFilePath);
+    void icp_svd_Registration(QString maxDistance,
+                              QString transEpsilon,
+                              QString fitnessEpsilon,
+                              QString maxIterations,
+                              QString srcFilePath,
+                              QString tgtFilePath);
+
+    /**
+     * @brief on_ICP_SVD_TreeViewAction_triggered 启动ICP_SVD(TreeView)配准窗口
+     */
+    void on_ICP_SVD_TreeViewAction_triggered();
+
+    /** @brief 进行ICP_SVD配准操作.
+          * @param[in] maxDistance 点对间最大配对距离
+          * @param[in] transEpsilon 两次变换矩阵之间的差值
+          * @param[in] fitnessEpsilon 前后两侧均方误差大小，当误差值小于这个值停止迭代
+          * @param[in] maxIterations 最大迭代次数
+          * @param[in] srcIndex 源点云索引
+          * @param[in] tgtIndex 目标点云索引
+          * @return void
+          */
+    void icp_svd_treeView_Registration(QString maxDistance,
+                                       QString transEpsilon,
+                                       QString fitnessEpsilon,
+                                       QString maxIterations,
+                                       int srcIndex,
+                                       int tgtIndex);
+
 };
 #endif // MAINWINDOW_H

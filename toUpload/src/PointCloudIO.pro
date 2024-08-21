@@ -11,6 +11,7 @@ CONFIG += c++17
 SOURCES += \
     colorselection.cpp \
     dialog_icp.cpp \
+    dialog_icptv.cpp \
     filter_voxel.cpp \
     main.cpp \
     mainwindow.cpp \
@@ -21,6 +22,7 @@ SOURCES += \
 HEADERS += \
     colorselection.h \
     dialog_icp.h \
+    dialog_icptv.h \
     filter_voxel.h \
     mainwindow.h \
     pcl_fuction.h \
@@ -29,6 +31,7 @@ HEADERS += \
 
 FORMS += \
     dialog_icp.ui \
+    dialog_icptv.ui \
     filter_voxel.ui \
     mainwindow.ui \
     view_pointsizesetting.ui \

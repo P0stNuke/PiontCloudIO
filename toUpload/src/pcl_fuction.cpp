@@ -5,15 +5,27 @@
 //------------------------------------filter--------------------------------------------
 
 //voxel
-pcl::PointCloud<pcl::PointXYZ>::Ptr pcl_filter_voxel(pcl::PointCloud<pcl::PointXYZ>::Ptr cloud_in,float leaf_size)
+// void pcl_filter_voxel(pcl::PointCloud<pcl::PointXYZ>::Ptr cloud_in,float leaf_size)
+// {
+//     pcl::VoxelGrid<pcl::PointXYZ> voxel_grid;
+//     voxel_grid.setLeafSize(leaf_size,leaf_size,leaf_size);
+//     voxel_grid.setInputCloud(cloud_in);
+//     pcl::PointCloud<pcl::PointXYZ>::Ptr cloud_out (new pcl::PointCloud<pcl::PointXYZ> ()) ;
+//     voxel_grid.filter(*cloud_out);
+
+//     return cloud_out;
+// }
+
+void pcl_filter_voxel(pcl::PointCloud<pcl::PointXYZ>::Ptr cloud_in,
+                      pcl::PointCloud<pcl::PointXYZ>::Ptr cloud_out,
+                      float leaf_size)
 {
     pcl::VoxelGrid<pcl::PointXYZ> voxel_grid;
     voxel_grid.setLeafSize(leaf_size,leaf_size,leaf_size);
     voxel_grid.setInputCloud(cloud_in);
-    pcl::PointCloud<pcl::PointXYZ>::Ptr cloud_out (new pcl::PointCloud<pcl::PointXYZ> ()) ;
     voxel_grid.filter(*cloud_out);
 
-    return cloud_out;
+    return;
 }
 
 

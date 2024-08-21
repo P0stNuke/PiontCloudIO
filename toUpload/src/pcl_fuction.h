@@ -21,8 +21,11 @@
 
 
 //------------------------------------------filter--------------------------------
-pcl::PointCloud<pcl::PointXYZ>::Ptr pcl_filter_voxel(pcl::PointCloud<pcl::PointXYZ>::Ptr cloud_in,
-                                                     float leaf_size);
+// pcl::PointCloud<pcl::PointXYZ>::Ptr pcl_filter_voxel(pcl::PointCloud<pcl::PointXYZ>::Ptr cloud_in,
+//                                                      float leaf_size);
+void pcl_filter_voxel(pcl::PointCloud<pcl::PointXYZ>::Ptr cloud_in,
+                      pcl::PointCloud<pcl::PointXYZ>::Ptr cloud_out,
+                      float leaf_size);
 //------------------------------------registration--------------------------------------------
 Eigen::Matrix4f pcl_registration_icp(pcl::PointCloud<pcl::PointXYZ>::Ptr cloud_src,
                                      pcl::PointCloud<pcl::PointXYZ>::Ptr cloud_tgt,

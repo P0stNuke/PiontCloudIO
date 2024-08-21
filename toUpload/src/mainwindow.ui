@@ -99,13 +99,14 @@
     <property name="title">
      <string>配准(&amp;R)</string>
     </property>
-    <widget class="QMenu" name="menuICP">
+    <widget class="QMenu" name="ICPMenu">
      <property name="title">
       <string>ICP</string>
      </property>
      <addaction name="ICP_SVDAction"/>
+     <addaction name="ICP_SVD_TreeViewAction"/>
     </widget>
-    <addaction name="menuICP"/>
+    <addaction name="ICPMenu"/>
    </widget>
    <addaction name="fileMenu"/>
    <addaction name="viewerMenu"/>
@@ -157,7 +158,12 @@
   </action>
   <action name="ICP_SVDAction">
    <property name="text">
-    <string>SVD</string>
+    <string>SVD...</string>
+   </property>
+  </action>
+  <action name="ICP_SVD_TreeViewAction">
+   <property name="text">
+    <string>SVD(TreeView)...</string>
    </property>
   </action>
  </widget>
