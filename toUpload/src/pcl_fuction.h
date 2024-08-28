@@ -9,6 +9,7 @@
 #include <pcl/visualization/pcl_visualizer.h>
 #include <pcl/filters/voxel_grid.h>
 #include <pcl/registration/icp.h>
+#include <Eigen/Core>
 
 #include <QDebug>
 
@@ -31,5 +32,10 @@ Eigen::Matrix4f pcl_registration_icp(pcl::PointCloud<pcl::PointXYZ>::Ptr cloud_s
                                      pcl::PointCloud<pcl::PointXYZ>::Ptr cloud_tgt,
                                      pcl::PointCloud<pcl::PointXYZ>::Ptr cloud_rst,
                                      double paraA,double paraB,double paraC,int paraD);
-
+// Function to manually pick point pairs
+void manualAlign(const pcl::PointCloud<pcl::PointXYZ>::Ptr& cloud_src,
+                 const pcl::PointCloud<pcl::PointXYZ>::Ptr& cloud_tgt,
+                 std::vector<int>& points1, std::vector<int>& points2,
+                 Eigen::Matrix4f& transformation_matrix,
+                 bool scale);
 #endif // PCL_FUCTION_H

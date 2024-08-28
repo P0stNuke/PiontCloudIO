@@ -1,15 +1,16 @@
-#include "dialog_icptv.h"
-#include "ui_dialog_icptv.h"
+#include "dialog_alignppp.h"
+#include "ui_dialog_alignppp.h"
 
-Dialog_icpTV::Dialog_icpTV(int index1,
-                           int index2,
-                           QString cloudName1,
-                           QString cloudName2,
-                           QWidget *parent)
+Dialog_AlignPPP::Dialog_AlignPPP(int index1,
+                                 int index2,
+                                 QString cloudName1,
+                                 QString cloudName2,
+                                 QWidget *parent)
     : QDialog(parent)
-    , ui(new Ui::Dialog_icpTV)
+    , ui(new Ui::Dialog_AlignPPP)
 {
     ui->setupUi(this);
+
     // 接收参数
     idx1 = index1;
     idx2 = index2;
@@ -27,11 +28,12 @@ Dialog_icpTV::Dialog_icpTV(int index1,
     ui->listView->setModel(listmode);
 }
 
-Dialog_icpTV::~Dialog_icpTV()
+Dialog_AlignPPP::~Dialog_AlignPPP()
 {
     delete ui;
 }
-void Dialog_icpTV::on_buttonBox_accepted()
+
+void Dialog_AlignPPP::on_buttonBox_accepted()
 {
     QModelIndex curIndex = ui->listView->currentIndex();
     if( -1 == curIndex.row())
@@ -39,30 +41,17 @@ void Dialog_icpTV::on_buttonBox_accepted()
         QMessageBox::warning(this, "Warning", "请选择一组点云作为目标点云");
         return;
     }
-    qDebug() << curIndex.data().toString();
-    qDebug() << cloud1;
-    qDebug() << cloud2;
     if(cloud1 == curIndex.data().toString())
     {
         int srcidx = idx2;
         int tgtidx = idx1;
-        emit sendPara(ui->maxDistLineEdit->text(),
-                      ui->transEpsilonLineEdit->text(),
-                      ui->fitnessEpsilonLineEdit->text(),
-                      ui->maxIterLineEdit->text(),
-                      srcidx,
-                      tgtidx);
+        emit sendIdx(srcidx, tgtidx);
     }
     else if(cloud2 == curIndex.data().toString())
     {
         int srcidx = idx1;
         int tgtidx = idx2;
-        emit sendPara(ui->maxDistLineEdit->text(),
-                      ui->transEpsilonLineEdit->text(),
-                      ui->fitnessEpsilonLineEdit->text(),
-                      ui->maxIterLineEdit->text(),
-                      srcidx,
-                      tgtidx);
+        emit sendIdx(srcidx, tgtidx);
 
     }
     else
@@ -71,10 +60,11 @@ void Dialog_icpTV::on_buttonBox_accepted()
     }
 
     this->close();
+
 }
 
 
-void Dialog_icpTV::on_buttonBox_rejected()
+void Dialog_AlignPPP::on_buttonBox_rejected()
 {
     this->close();
 }

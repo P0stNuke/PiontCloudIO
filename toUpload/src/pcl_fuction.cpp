@@ -62,3 +62,29 @@ Eigen::Matrix4f pcl_registration_icp(pcl::PointCloud<pcl::PointXYZ>::Ptr cloud_s
 
     return transformation;
 }
+
+// Function to manually pick point pairs
+void manualAlign(const pcl::PointCloud<pcl::PointXYZ>::Ptr& cloud_src,
+                 const pcl::PointCloud<pcl::PointXYZ>::Ptr& cloud_tgt,
+                 std::vector<int>& points1, std::vector<int>& points2,
+                 Eigen::Matrix4f& transformation_matrix, bool scale) {
+    // Ensure we have the same number of points in both vectors
+    if (points1.size() != points2.size()) {
+        std::cerr << "Error: Point vectors are of unequal sizes." << std::endl;
+        return;
+    }
+
+    // Create matrices for the points
+    Eigen::Matrix<float, 3, Eigen::Dynamic> src(3, points1.size());
+    Eigen::Matrix<float, 3, Eigen::Dynamic> tgt(3, points2.size());
+
+    for (size_t i = 0; i < points1.size(); ++i) {
+        src.col(i) = cloud_src->points[points1[i]].getVector3fMap();
+        tgt.col(i) = cloud_tgt->points[points2[i]].getVector3fMap();
+    }
+
+    // Compute the transformation using Singular Value Decomposition (SVD)
+    // true 表示考虑缩放
+    Eigen::Matrix4f T = Eigen::umeyama(src, tgt, scale);
+    transformation_matrix = T;
+}

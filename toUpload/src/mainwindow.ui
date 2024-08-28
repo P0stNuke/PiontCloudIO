@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>800</width>
-    <height>600</height>
+    <width>1000</width>
+    <height>606</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -16,37 +16,66 @@
   <widget class="QWidget" name="centralwidget">
    <layout class="QGridLayout" name="gridLayout_3">
     <item row="0" column="0">
-     <layout class="QHBoxLayout" name="horizontalLayout" stretch="2,8">
+     <layout class="QVBoxLayout" name="verticalLayout_2" stretch="2">
       <item>
-       <layout class="QVBoxLayout" name="verticalLayout">
+       <layout class="QHBoxLayout" name="horizontalLayout" stretch="2,8,2">
         <item>
-         <widget class="QGroupBox" name="pointCloudGroupBox">
-          <property name="title">
-           <string>点云树</string>
-          </property>
-          <layout class="QGridLayout" name="gridLayout_2">
-           <item row="0" column="0">
-            <widget class="QTreeView" name="DBtreeView"/>
-           </item>
-          </layout>
-         </widget>
+         <layout class="QVBoxLayout" name="verticalLayout">
+          <item>
+           <widget class="QGroupBox" name="pointCloudGroupBox">
+            <property name="minimumSize">
+             <size>
+              <width>150</width>
+              <height>250</height>
+             </size>
+            </property>
+            <property name="title">
+             <string>点云树</string>
+            </property>
+            <layout class="QGridLayout" name="gridLayout_2">
+             <item row="0" column="0">
+              <widget class="QTreeView" name="DBtreeView"/>
+             </item>
+            </layout>
+           </widget>
+          </item>
+          <item>
+           <widget class="QGroupBox" name="propertyGroupBox">
+            <property name="title">
+             <string>参数</string>
+            </property>
+            <layout class="QGridLayout" name="gridLayout">
+             <item row="0" column="0">
+              <widget class="QTextBrowser" name="textBrowser_2">
+               <property name="minimumSize">
+                <size>
+                 <width>150</width>
+                 <height>250</height>
+                </size>
+               </property>
+              </widget>
+             </item>
+            </layout>
+           </widget>
+          </item>
+         </layout>
         </item>
         <item>
-         <widget class="QGroupBox" name="propertyGroupBox">
-          <property name="title">
-           <string>参数</string>
+         <widget class="QVTKOpenGLNativeWidget" name="mainWidget" native="true"/>
+        </item>
+        <item>
+         <widget class="QTabWidget" name="tabWidget">
+          <property name="currentIndex">
+           <number>0</number>
           </property>
-          <layout class="QGridLayout" name="gridLayout">
-           <item row="0" column="0">
-            <widget class="QTextBrowser" name="textBrowser_2"/>
-           </item>
-          </layout>
+          <widget class="QWidget" name="tab">
+           <attribute name="title">
+            <string>Tab 1</string>
+           </attribute>
+          </widget>
          </widget>
         </item>
        </layout>
-      </item>
-      <item>
-       <widget class="QVTKOpenGLNativeWidget" name="mainWidget" native="true"/>
       </item>
      </layout>
     </item>
@@ -57,7 +86,7 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>800</width>
+     <width>1000</width>
      <height>21</height>
     </rect>
    </property>
@@ -107,6 +136,7 @@
      <addaction name="ICP_SVD_TreeViewAction"/>
     </widget>
     <addaction name="ICPMenu"/>
+    <addaction name="alignPPPAction"/>
    </widget>
    <addaction name="fileMenu"/>
    <addaction name="viewerMenu"/>
@@ -164,6 +194,11 @@
   <action name="ICP_SVD_TreeViewAction">
    <property name="text">
     <string>SVD(TreeView)...</string>
+   </property>
+  </action>
+  <action name="alignPPPAction">
+   <property name="text">
+    <string>Align(Point Pairs Picking)</string>
    </property>
   </action>
  </widget>

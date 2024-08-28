@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>Form_PPP</class>
+ <widget class="QWidget" name="Form_PPP">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>462</width>
+    <height>428</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Form</string>
+  </property>
+  <layout class="QGridLayout" name="gridLayout">
+   <item row="0" column="0">
+    <layout class="QHBoxLayout" name="horizontalLayout">
+     <item>
+      <widget class="QLabel" name="label">
+       <property name="text">
+        <string>源点云选点</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="srcDeleteButton">
+       <property name="text">
+        <string>删除最后添加点</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="srcAddButton">
+       <property name="text">
+        <string>手动添加点</string>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </item>
+   <item row="1" column="0">
+    <widget class="QTableView" name="srcTableView">
+     <property name="font">
+      <font>
+       <pointsize>9</pointsize>
+      </font>
+     </property>
+    </widget>
+   </item>
+   <item row="2" column="0">
+    <layout class="QHBoxLayout" name="horizontalLayout_2">
+     <item>
+      <widget class="QLabel" name="label_2">
+       <property name="text">
+        <string>目标点云选点</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="tgtDeleteButton">
+       <property name="text">
+        <string>删除最后添加点</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="tgtAddButton">
+       <property name="text">
+        <string>手动添加点</string>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </item>
+   <item row="3" column="0">
+    <widget class="QTableView" name="tgtTableView">
+     <property name="font">
+      <font>
+       <pointsize>9</pointsize>
+      </font>
+     </property>
+    </widget>
+   </item>
+   <item row="4" column="0">
+    <widget class="QCheckBox" name="adjustScaleCheckBox">
+     <property name="text">
+      <string>考虑缩放</string>
+     </property>
+    </widget>
+   </item>
+   <item row="5" column="0">
+    <widget class="QCheckBox" name="cameraAutoResetCheckBox">
+     <property name="text">
+      <string>自动重置摄像机视角</string>
+     </property>
+    </widget>
+   </item>
+   <item row="6" column="0">
+    <layout class="QHBoxLayout" name="horizontalLayout_3">
+     <item>
+      <widget class="QPushButton" name="previewPushButton">
+       <property name="text">
+        <string>配准预览</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <spacer name="horizontalSpacer">
+       <property name="orientation">
+        <enum>Qt::Horizontal</enum>
+       </property>
+       <property name="sizeHint" stdset="0">
+        <size>
+         <width>40</width>
+         <height>20</height>
+        </size>
+       </property>
+      </spacer>
+     </item>
+     <item>
+      <widget class="QDialogButtonBox" name="buttonBox">
+       <property name="standardButtons">
+        <set>QDialogButtonBox::Cancel|QDialogButtonBox::Ok</set>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </item>
+  </layout>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>

@@ -10,9 +10,11 @@ CONFIG += c++17
 
 SOURCES += \
     colorselection.cpp \
+    dialog_alignppp.cpp \
     dialog_icp.cpp \
     dialog_icptv.cpp \
     filter_voxel.cpp \
+    form_ppp.cpp \
     main.cpp \
     mainwindow.cpp \
     pcl_fuction.cpp \
@@ -21,18 +23,22 @@ SOURCES += \
 
 HEADERS += \
     colorselection.h \
+    dialog_alignppp.h \
     dialog_icp.h \
     dialog_icptv.h \
     filter_voxel.h \
+    form_ppp.h \
     mainwindow.h \
     pcl_fuction.h \
     view_pointsizesetting.h \
     view_rendering.h
 
 FORMS += \
+    dialog_alignppp.ui \
     dialog_icp.ui \
     dialog_icptv.ui \
     filter_voxel.ui \
+    form_ppp.ui \
     mainwindow.ui \
     view_pointsizesetting.ui \
     view_rendering.ui

@@ -9,6 +9,8 @@
 #include "filter_voxel.h"   // 体素滤波窗口类
 #include "dialog_icp.h"     // ICP_SVD配准窗口类
 #include "dialog_icptv.h"   // ICP_SVD配准窗口类（使用TreeView）
+#include "dialog_alignppp.h"
+#include "form_ppp.h"
 
 //-----------------------------vtk---------------------------------
 #include <QVTKOpenGLNativeWidget.h>
@@ -36,7 +38,10 @@ VTK_MODULE_INIT(vtkRenderingFreeType)
 //-----------------------------Qt---------------------------------
 
 typedef pcl::PointCloud<pcl::PointXYZ> PointCloudXYZ;
+
 #define DEFAUT_PT_SIZE 1
+
+
 QT_BEGIN_NAMESPACE
 namespace Ui {
 class MainWindow;
@@ -46,6 +51,11 @@ QT_END_NAMESPACE
 class MainWindow : public QMainWindow
 {
     Q_OBJECT
+signals:
+    // 手动配准相关信号
+    void updateTableview(pcl::PointCloud<pcl::PointXYZ>::Ptr points,
+                         int flag);
+    void sendPPPCloud(pcl::PointCloud<pcl::PointXYZ>::Ptr rst);
 
 public:
     MainWindow(QWidget *parent = nullptr);
@@ -67,7 +77,7 @@ private:
     };
     std::vector<rgbColor*> cloud_color; // 点云颜色容器
     std::vector<int> cloud_pointSize;   // 点云尺寸容器
-    int point_size = 1;//点云大小
+    // std::vector<QString> cloud_path;
     // 点云对象指针
     // pcl::PointCloud<pcl::PointXYZ>::Ptr cloudptr;
     // 显示器对象指针
@@ -91,6 +101,15 @@ private:
     PointCloudXYZ src_cloud;
     PointCloudXYZ tgt_cloud;
     PointCloudXYZ::Ptr rst_cloud;
+    // 手动配准窗口对象指针
+    Dialog_AlignPPP *dialog_alignppp;
+    struct PointSelection {
+        std::vector<pcl::index_t> picked_idx;
+        PointCloudXYZ::Ptr clicked_points_3d;
+    }srcPP, tgtPP;
+    int srcVp, tgtVp, rstVp;
+    Form_PPP *form_ppp;
+
 //--------------------------------------private funaction-----------------------------------------
     void initMainWidgetViewer();
     void initDBtree();
@@ -152,5 +171,57 @@ private slots:
                                        int srcIndex,
                                        int tgtIndex);
 
+    /**
+     * @brief on_alignPPPAction_triggered 启动手动配准目标点云选择窗口
+     */
+    void on_alignPPPAction_triggered();
+
+    /** @brief 进入手动配准模式
+          * @param[in] srcIdx 手动配准窗口返回的源点云索引
+          * @param[in] tgtIdx 手动配准窗口返回的目标点云索引
+          * @return void
+          */
+    void pointPairsPicking_Align(int srcIdx, int tgtIdx);
+
+    /**
+     * @brief point_callback 选点回调函数
+     * @param[in] event 选点事件
+     * @param[in] args 主窗口对象
+     * @return void
+     */
+    static void point_callback(const pcl::visualization::PointPickingEvent& event,void* args);
+
+    /**
+     * @brief pointPairsPicking_Preview 手动配准预览
+     * @param[in] srcIdx 源点云中选中点的索引
+     * @param[in] tgtIdx 目标点云选中点的索引
+     * @return void
+     */
+    void pointPairsPicking_Preview(int srcIdx, int tgtIdx);
+
+    /**
+     * @brief pointPairsPicking_Confirm 确认手动配准结果，退出手动配准模式
+     * @param[in] rstCloud 结果点云
+     * @return void
+     */
+    void pointPairsPicking_Confirm(pcl::PointCloud<pcl::PointXYZ>::Ptr rstCloud);
+
+    /**
+     * @brief pointPairsPicking_deleteSrcPoint 删除源点云最后选中点
+     * @return void
+     */
+    void pointPairsPicking_deleteSrcPoint();
+
+    /**
+     * @brief pointPairsPicking_deleteTgtPoint 删除目标点云最后选中点
+     * @return void
+     */
+    void pointPairsPicking_deleteTgtPoint();
+
+    /**
+     * @brief
+     * @return void
+     */
+    void pointPairsPicking_rejected();
 };
 #endif // MAINWINDOW_H

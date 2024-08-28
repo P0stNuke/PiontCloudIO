@@ -13,7 +13,7 @@ colorSelection::colorSelection(QWidget *parent)
     }
     else
     {
-        c.setRgb(143,153,159,255);
+        c.setRgb(25,25,25,255);
         color=c;
     }
 

@@ -8,6 +8,7 @@ Dialog_icp::Dialog_icp(QWidget *parent)
     , ui(new Ui::Dialog_icp)
 {
     ui->setupUi(this);
+
 }
 
 Dialog_icp::~Dialog_icp()
